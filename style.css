@@ -152,7 +152,23 @@ body {
     -ms-transition: all 0.4s linear;
     -o-transition: all 0.4s linear;
 }
-
 .recipe-btn:hover {
     background: var(--brown-dark);
+}
+
+/* Media Queries */
+@media screen and (min-width: 600px){
+    .cocktail-search-box {
+        width: 540px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    #cocktail{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+    }
 }
