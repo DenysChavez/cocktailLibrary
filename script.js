@@ -51,10 +51,7 @@ function getDrinkRecipe(e) {
 // create a modal
 function drinkRecipeModal(drink) {
     drink = drink[0];
-    console.log(drink);
-
     //save ingredients in an object
-    console.log('keys:');
     let ingredients = Object.fromEntries(Object.entries(drink).filter(([key, value]) => key.includes("strIngredient")));
     let measures = Object.fromEntries(Object.entries(drink).filter(([key, value]) => key.includes("strMeasure")));
 
