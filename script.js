@@ -17,7 +17,6 @@ function getDrinkList() {
         .then(response => response.json())
         .then(data => {
             let html = "";
-            if (data.drinks) {
                 data.drinks.forEach(drink => {
                     html += `
                     <div class="drink-item" data-id="${drink.idDrink}">
@@ -30,13 +29,11 @@ function getDrinkList() {
                         </div>
                     </div>`
                 });
-                drinkList.classList.remove('notFound');
-            } else {
-                html = "Sorry, we didn't find any drink!";
-                drinkList.classList.add('notFound');
-            }
             drinkList.innerHTML = html;
-        });
+        }).catch(error => {
+            drinkList.innerHTML = "Sorry We couldn't find a drink";
+            console.log(error);
+        })
 }
 
 // get recipe of the drink
@@ -53,23 +50,57 @@ function getDrinkRecipe(e) {
 
 // create a modal
 function drinkRecipeModal(drink) {
-    console.log(drink);
     drink = drink[0];
+    //save ingredients in an object
+    let ingredients = Object.fromEntries(Object.entries(drink).filter(([key, value]) => key.includes("strIngredient")));
+    let measures = Object.fromEntries(Object.entries(drink).filter(([key, value]) => key.includes("strMeasure")));
+
+    // coctail variable holds our merged data witouth null keys and change value of keys where their values are null 
+    let cocktail = {};
+    for (let key in ingredients) {
+        if (ingredients.hasOwnProperty(key) && ingredients[key] !== null) {
+            let ingredient = ingredients[key];
+            let measure = measures["strMeasure" + key.slice(13)];
+            if (measure === null) {
+                measure = "of your preference"
+            }
+            cocktail[ingredient] = measure
+        }
+    }
+    // create the ingredientes HTML list
+    let ingredientsHtml = "";
+    for (let key in cocktail) {
+        ingredientsHtml += `<li>${key}: ${cocktail[key]}</li>`
+    }
+
+    //save instructions
+    let instructions = drink.strInstructions.trim().split(".");
+    instructions = instructions.filter(word => word !== "")
+    let instructionsHtml = ""
+    for (let i = 0; i < instructions.length; i++) {
+        instructionsHtml += `${instructions[i]}<br>`
+    }
+
+    //add everything in the html
     let html = `
         <h2 class="recipe-title">${drink.strDrink}</h2>
         <p class="recipe-category">Category: ${drink.strCategory}</p>
+        <br>
+        <div class="recipe-ingredients">
+            <br>
+            <h3>Ingredients:</h3>
+            <ul>
+                ${ingredientsHtml}
+            </ul>
+        </div>
         <div class="recipe-instruct">
             <h3>Instructions:</h3>
-            <p>${drink.strInstructions}</p>
+            <p>${instructionsHtml}</p>
         </div>
         <div class="recipe-drink-img">
             <img src="${drink.strDrinkThumb}" alt="">
         </div>
-        <div class="recipe-link">
-            <a href="${drink.strVideo}" target="_blank">Watch Video</a>
-        </div>
     `;
     drinkDetailsContent.innerHTML = html;
     drinkDetailsContent.parentElement.classList.add('showRecipe');
-    
 }

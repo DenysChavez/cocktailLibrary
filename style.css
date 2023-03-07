@@ -278,6 +278,10 @@ body {
     opacity: 0.8;
 }
 
+ul {
+    list-style: none;
+}
+
 /*  */
 .notFound {
     grid-template-columns: 1fr !important;
