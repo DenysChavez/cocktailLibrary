@@ -48,6 +48,14 @@ body {
     background: #fff;
     text-align: center;
 }
+form {
+    font-family: inherit;
+    font-weight: 700;
+}
+
+label {
+    font-weight: 500;
+}
 
 .drink-search {
     margin: 2rem 0;
@@ -63,12 +71,12 @@ body {
     align-items: stretch;
 }
 
-.search-control,
+.search-term,
 .search-btn {
     width: 100%;
 }
 
-.search-control {
+.search-term {
     padding: 0 1rem;
     font-size: 1.1rem;
     font-family: inherit;
@@ -78,8 +86,12 @@ body {
     border-top-left-radius: 2rem;
     border-bottom-left-radius: 2rem;
 }
-.search-control::placeholder{
+.search-term::placeholder{
     color: var(--browny);
+}
+
+legend {
+    padding-bottom: 5px;
 }
 .search-btn {
     width: 55px;
@@ -194,6 +206,10 @@ body {
 }
 
 /* Js related */
+.random {
+    display: block;
+}
+
 .showRecipe {
     display: block;
 }

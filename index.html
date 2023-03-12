@@ -22,15 +22,29 @@
                 </blockquote>
 
                 <div class="drink-search-box">
-                    <input type="text" class="search-control" placeholder="Enter an ingredient" id="search-input">
-                    <button type="submit" class="search-btn btn" id="search-btn">
-                        <i class="fas fa-search"></i>
-                    </button>
+                    <form action="/search" method="get">
+                        <legend>Search by: </legend>
+                        <label for="ingredient">Ingredient Name</label>
+                        <input type="radio" name="seach-by" id="ingredient">
+                        <br>
+                        <label for="name">Cocktail Name</label>
+                        <input type="radio" name="seach-by" id="name" value="cocktail-name">
+                        <br>
+                        <label for="first-letter">First Letter</label>
+                        <input type="radio" name="seach-by" id="first-letter" value="first-letter">
+                        <br>
+                        <br>
+                        <legend>Search Term:</legend>
+                        <div class="drink-search-box">
+                            <input type="text" class="search-term" placeholder="Search..." id="search-term">
+                            <button type="submit" class="search-btn btn" id="search-btn"><i class="fas fa-search"></i></button>  
+                        </div>
+                    </form>
                 </div>
-
             </div>
+
             <div class="drink-result">
-                <h2 class="title">Your Search Results:</h2>
+                <!-- <h2 class="title">Your Search Results:</h2> -->
                 <div id="drink">
                     <!-- drink item -->
                     <!-- <div class="drink-item">
@@ -73,7 +87,7 @@
     </div>
 
 
-    <script src="script.js"></script>
+    <script src="scriptTwo.js"></script>
 </body>
 
 </html>
