@@ -22,21 +22,21 @@
                 </blockquote>
 
                 <div class="drink-search-box">
-                    <form action="/search" method="get">
+                    <form>
                         <legend>Search by: </legend>
                         <label for="ingredient">Ingredient Name</label>
-                        <input type="radio" name="seach-by" id="ingredient">
+                        <input type="radio" name="seachBy" id="ingredient" value="ingredient-name" required>
                         <br>
                         <label for="name">Cocktail Name</label>
-                        <input type="radio" name="seach-by" id="name" value="cocktail-name">
+                        <input type="radio" name="seachBy" id="name" value="cocktail-name" required>
                         <br>
                         <label for="first-letter">First Letter</label>
-                        <input type="radio" name="seach-by" id="first-letter" value="first-letter">
+                        <input type="radio" name="seachBy" id="first-letter" value="first-letter" required>
                         <br>
                         <br>
                         <legend>Search Term:</legend>
                         <div class="drink-search-box">
-                            <input type="text" class="search-term" placeholder="Search..." id="search-term">
+                            <input type="text" class="search-term" placeholder="Search..." id="search-term" required>
                             <button type="submit" class="search-btn btn" id="search-btn"><i class="fas fa-search"></i></button>  
                         </div>
                     </form>
